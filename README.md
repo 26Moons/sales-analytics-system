@@ -16,4 +16,8 @@ Data Source → Python ETL → PostgreSQL (Data Store) → Power BI (Visualizati
 - ✅ Created `salesdb` database and `transactions` table
 - ✅ Pushed project to GitHub
 
-Next up → Build Python ETL script to load sales data from CSV into the database.
+### 📅 Day 2 Progress
+- ✅ Created Python ETL script ( extract(read data from csv) -> transform(calculated total sales) -> load(load the results into database table) )
+- ✅ Understood the logging module ( production style ####logging)
+- ✅ Pushed changes
+
