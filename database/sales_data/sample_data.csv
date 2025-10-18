@@ -1,0 +1,5 @@
+order_date,region,product,quantity,unit_price
+2024-01-15,North,Laptop,4,56000
+2024-01-16,South,Mobile,6,16000
+2024-01-18,East,Tablet,5,28000
+2024-01-20,West,Headphones,10,4000

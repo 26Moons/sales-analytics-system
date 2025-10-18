@@ -1,0 +1,14 @@
+2025-10-18 16:18:45,880 | INFO | loaded 4 rows from data file.
+2025-10-18 16:18:45,885 | INFO | first rows are    order_date region     product  quantity  unit_price
+0  2024-01-15  North      Laptop         4       56000
+1  2024-01-16  South      Mobile         6       16000
+2  2024-01-18   East      Tablet         5       28000
+3  2024-01-20   West  Headphones        10        4000 
+2025-10-18 16:18:45,888 | INFO | Transformation complete : Sample
+   order_date region     product  quantity  unit_price  total_sales
+0 2024-01-15  North      Laptop         4       56000       224000
+1 2024-01-16  South      Mobile         6       16000        96000
+2 2024-01-18   East      Tablet         5       28000       140000
+3 2024-01-20   West  Headphones        10        4000        40000
+2025-10-18 16:18:45,956 | INFO | Successfully loaded
+2025-10-18 16:18:45,958 | INFO | total rows in table in sql is 15
