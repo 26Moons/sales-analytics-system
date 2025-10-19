@@ -21,3 +21,7 @@ Data Source → Python ETL → PostgreSQL (Data Store) → Power BI (Visualizati
 - ✅ Understood the logging module ( **production style logging**)
 - ✅ Pushed changes
 
+### 📅 Day 3 Progress
+- ✅ Added automatic latest-file ingestion using glob
+- ✅ Added schema validation & column alignment for extra/missing columns
+- ✅ Added config folder , changed the folder structure so as to modularize ( **production style data pipeline**)
