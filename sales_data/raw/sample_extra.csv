@@ -1,0 +1,5 @@
+Date,Region,Sales,Profit,Discount,CustomerType,Remarks
+2025-01-01,North,12000,3000,5,New,Good customer
+2025-01-02,South,8000,2000,10,Returning,Repeat purchase
+2025-01-03,East,9500,2500,0,New,No issues
+2025-01-04,West,7000,1800,15,Returning,Discount applied
