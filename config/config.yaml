@@ -1,0 +1,21 @@
+# This file stores all file paths , schema , database config
+
+paths:
+    raw_data : "sales_data/raw"
+    processed_data : "sales_data/processed"
+    logs : "logs/etl_logs.log"
+
+schema:
+    columns:
+      - Date
+      - Region
+      - Product
+      - Sales
+      - Quantity
+
+database:
+    name : "salesdb"
+    user : "postgres"
+    password : "guptaRia123"
+    host : "localhost"
+    port : 5433
