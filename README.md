@@ -25,3 +25,8 @@ Data Source → Python ETL → PostgreSQL (Data Store) → Power BI (Visualizati
 - ✅ Added automatic latest-file ingestion using glob
 - ✅ Added schema validation & column alignment for extra/missing columns
 - ✅ Added config folder , changed the folder structure so as to modularize ( **production style data pipeline**)
+
+- ### 📅 Day 4 Progress
+- ✅ Added all paths and database credentials to config.yaml 
+- ✅ Configured the paths in config.yaml in config_loader.py
+- ✅ Added extract.py , created get_latest_file and extract_data functions inside it.
