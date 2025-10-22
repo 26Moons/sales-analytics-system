@@ -1,2 +1,0 @@
-2025-10-19 10:07:53,757 | INFO | There were 7 extra columns in this file
-2025-10-19 10:07:53,760 | INFO | final df has Index(['order_date', 'region', 'product', 'quantity', 'unit_price'], dtype='object') columns
