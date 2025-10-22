@@ -34,9 +34,13 @@ def extract_data():
 
         missing_cols = [col for col in og_schema if col not in df.columns]
         
-        for col in missing_cols:
-            df[col] = 'None'
+        df = df[[c for c in df.columns if c in og_schema]]
 
+        if (len(missing_cols)) is not 0:
+            logger.info(f"{len(missing_cols)} columns are missing")
+            for col in missing_cols:
+                df[col] = None
+                
         return df
     except Exception as e:
         logger.info("error is %s",e)
