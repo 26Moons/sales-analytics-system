@@ -3,7 +3,7 @@ from etl_scripts.utils import get_logger
 
 logger = get_logger("etl")
 
-def transform(df):
+def transform(df : pd.DataFrame):
     try:
         if df is None or df.empty:
             logger.warning("No data recieved for transformation")

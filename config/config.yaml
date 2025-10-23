@@ -7,15 +7,16 @@ paths:
 
 schema:
     columns:
-      - Date
-      - Region
-      - Product
-      - Sales
-      - Quantity
+      - date
+      - region
+      - product
+      - sales
+      - quantity
 
 database:
-    name : "salesdb"
-    user : "postgres"
-    password : "guptaRia123"
-    host : "localhost"
+    name : salesdb
+    user : postgres
+    password : guptaRia123
+    host : localhost
     port : 5433
+    table: transactions

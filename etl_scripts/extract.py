@@ -10,9 +10,9 @@ configs = load_config()
 def get_latest_file(folder_path : str , extension : str = "*.csv" ):
     # got the folder of new files from configs instance
     # rturns the latest file path
-    files = glob.glob(os.path.join(folder,extension))
+    files = glob.glob(os.path.join(folder_path,extension))
     if not files:
-        logger.error(f'No new files are there in {folder}')
+        logger.error(f'No new files are there in {folder_path}')
         return None
     new_file = max(files , key=os.path.getctime)
     logger.info(f'New file found {new_file}')
