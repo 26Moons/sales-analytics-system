@@ -1,41 +1,98 @@
-# Sales Analytics System
+# 🧠 Sales Analytics System
 
-### 🚀 Project Overview
-This project simulates a real-world analytics environment — including data extraction, transformation, loading (ETL), and dashboarding — using **Python, PostgreSQL, and Power BI**.
-
----
-
-### 🧩 Architecture
-Data Source → Python ETL → PostgreSQL (Data Store) → Power BI (Visualization)
+### 🚀 Overview
+A complete **end-to-end Sales Analytics Data Pipeline** simulating a real-world enterprise environment.  
+It automates data ingestion, transformation, and loading into a relational data store — ready for Power BI reporting.
 
 ---
 
-### 📅 Day 1 Progress
-- ✅ Set up folder structure
-- ✅ Installed PostgreSQL
-- ✅ Created `salesdb` database and `transactions` table
-- ✅ Pushed project to GitHub
+### 🏗️ Architecture
 
-### 📅 Day 2 Progress
-- ✅ Created Python ETL script ( extract(read data from csv) -> transform(calculated total sales) -> load(load the results into database table) )
-- ✅ Understood the logging module ( **production style logging**)
-- ✅ Pushed changes
 
-### 📅 Day 3 Progress
-- ✅ Added automatic latest-file ingestion using glob
-- ✅ Added schema validation & column alignment for extra/missing columns
-- ✅ Added config folder , changed the folder structure so as to modularize ( **production style data pipeline**)
+---
 
-- ### 📅 Day 4 Progress
-- ✅ Added all paths and database credentials to config.yaml 
-- ✅ Configured the paths in config.yaml in config_loader.py
-- ✅ Added extract.py , created get_latest_file and extract_data functions inside it.
+### ⚙️ Tech Stack
 
-- - ### 📅 Day 5 Progress
-- ✅ Configured the paths in config.yaml in config_loader.py
-- ✅ Added transform.py , checked schema and transformed columns using **pandas**
+| Layer | Tool | Purpose |
+|:--|:--|:--|
+| Data Source | CSV | Raw sales data |
+| Data Processing | Python (pandas, psycopg2, yaml, logging) | ETL orchestration |
+| Data Storage | PostgreSQL | Central analytical data store |
+| Visualization | Power BI | Dashboards and metrics visualization |
+| Version Control | Git + GitHub | Code management and documentation |
+
+---
+
+###
+---
+
+### 🧩 Key Features
+
+- **Dynamic File Ingestion**: Automatically detects and ingests the latest CSV file.
+- **Schema Validation**: Aligns columns between source files and database schema.
+- **Config-Driven Pipeline**: All paths, DB credentials, and parameters stored in YAML.
+- **Modularized ETL**: Extract, Transform, and Load implemented as independent modules.
+- **Robust Logging**: Timestamped, rotating logs for every pipeline run.
+- **Chunked Inserts**: Optimized PostgreSQL ingestion for large datasets.
+- **Error Handling**: Graceful failure capture and retry-ready design.
+
+---
+
+### 🧠 Setup Instructions
+
+1. Clone this repo:
+   ```bash
+   git clone https://github.com/26Moons/sales-analytics-system.git
+   cd sales-analytics-system
+
+
+2.Create a virtual environment and install dependencies:
+
+   pip install -r requirements.txt
+
+
+3.Update your config/config.yaml with:
+
+  local file paths
   
-- - ### 📅 Day 6 Progress
-- ✅ Modularized load functionality ( **production style loading with EXTRAS module of psycopg2 using execute values (Chunked Inserts)**)
-- ✅ Tested the functionality using test_load
-- ✅ **production style usage of WITH statement in python and psycopg.SQL to prevent fatal SQL ingestion**
+  PostgreSQL credentials
+  
+  log paths
+
+4. Run the pipeline:
+
+  python main_etl.py
+
+  
+ 📁 Project Structure
+ sales-analytics-system/
+│
+├── config/
+│ ├── config.yaml
+│ └── init.py
+│
+├── etl_scripts/
+│ ├── extract.py
+│ ├── transform.py
+│ ├── load.py
+│ └── init.py
+│
+├── utils/
+│ └── utils.py
+│
+├── logs/
+│ └── pipeline.log
+│
+├── notebooks/
+│ └── exploration.ipynb
+│
+├── reports/
+│ └── dashboard.pbix
+│
+├── docs/
+│ ├── daily_progress.md
+│ └── design_notes.md
+│
+├── main_etl.py
+└── README.md
+
