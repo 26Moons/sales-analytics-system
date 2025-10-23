@@ -30,3 +30,12 @@ Data Source → Python ETL → PostgreSQL (Data Store) → Power BI (Visualizati
 - ✅ Added all paths and database credentials to config.yaml 
 - ✅ Configured the paths in config.yaml in config_loader.py
 - ✅ Added extract.py , created get_latest_file and extract_data functions inside it.
+
+- - ### 📅 Day 5 Progress
+- ✅ Configured the paths in config.yaml in config_loader.py
+- ✅ Added transform.py , checked schema and transformed columns using **pandas**
+  
+- - ### 📅 Day 6 Progress
+- ✅ Modularized load functionality ( **production style loading with EXTRAS module of psycopg2 using execute values (Chunked Inserts)**)
+- ✅ Tested the functionality using test_load
+- ✅ **production style usage of WITH statement in python and psycopg.SQL to prevent fatal SQL ingestion**
