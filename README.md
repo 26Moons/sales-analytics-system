@@ -48,7 +48,7 @@ It automates data ingestion, transformation, and loading into a relational data 
 
 2.Create a virtual environment and install dependencies:
 
-   pip install -r requirements.txt
+   ```pip install -r requirements.txt
 
 
 3.Update your config/config.yaml with:
