@@ -46,53 +46,23 @@ It automates data ingestion, transformation, and loading into a relational data 
    cd sales-analytics-system
 
 
-2.Create a virtual environment and install dependencies:
+1. Create a virtual environment and install dependencies:
+   ```bash
+   pip install requiements.txt
 
-   ```pip install -r requirements.txt
 
+3. Update your config/config.yaml with:
 
-3.Update your config/config.yaml with:
-
-  local file paths
-  
-  PostgreSQL credentials
-  
-  log paths
+   local file paths
+   
+   PostgreSQL credentials
+   
+   log paths
 
 4. Run the pipeline:
 
-  python main_etl.py
+   python main_etl.py
 
   
  📁 Project Structure
- sales-analytics-system/
-│
-├── config/
-│ ├── config.yaml
-│ └── init.py
-│
-├── etl_scripts/
-│ ├── extract.py
-│ ├── transform.py
-│ ├── load.py
-│ └── init.py
-│
-├── utils/
-│ └── utils.py
-│
-├── logs/
-│ └── pipeline.log
-│
-├── notebooks/
-│ └── exploration.ipynb
-│
-├── reports/
-│ └── dashboard.pbix
-│
-├── docs/
-│ ├── daily_progress.md
-│ └── design_notes.md
-│
-├── main_etl.py
-└── README.md
-
+ 
