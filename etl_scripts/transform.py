@@ -11,8 +11,7 @@ def transform(df : pd.DataFrame):
 
         df = df.drop_duplicates()
         df.columns = [col.strip() for col in df.columns]
-        df['total_sales'] = df['quantity'] * df['unit_price']
-        df['order_date'] = pd.to_datetime(df['order_date'])
+        
 
         logger.info(f"Data transformed , shape is {df.shape}")
 

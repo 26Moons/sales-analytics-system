@@ -10,12 +10,13 @@ configs = load_config()
 def get_latest_file(folder_path : str , extension : str = "*.csv" ):
     # got the folder of new files from configs instance
     # rturns the latest file path
-    files = glob.glob(os.path.join(folder_path,extension))
+    files = glob.glob(os.path.normpath(os.path.join(folder_path,extension)))
     if not files:
         logger.error(f'No new files are there in {folder_path}')
         return None
-    new_file = max(files , key=os.path.getctime)
+    new_file = max(files , key = os.path.getctime)
     logger.info(f'New file found {new_file}')
+    return new_file
 
 
 
@@ -27,16 +28,21 @@ def extract_data():
         og_schema = configs["schema"]["columns"]
 
         file_path = get_latest_file(raw_folder)
+        logger.info(f"📁 file path resolved to: {file_path}")
+        
+        if not os.path.exists(file_path):
+            logger.info(f"❌ File not found: {file_path}")
+
         if not file_path:
             return None
-        
+
         df = pd.read_csv(file_path)
 
         missing_cols = [col for col in og_schema if col not in df.columns]
         
         df = df[[c for c in df.columns if c in og_schema]]
 
-        if (len(missing_cols)) is not 0:
+        if (len(missing_cols)) != 0:
             logger.info(f"{len(missing_cols)} columns are missing")
             for col in missing_cols:
                 df[col] = None

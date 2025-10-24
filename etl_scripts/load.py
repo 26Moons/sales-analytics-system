@@ -38,6 +38,7 @@ def load_to_postgres(df : pd.DataFrame , chunk_size: int = 5000):
 
         with _get_connection(db_conf) as conn:
             with conn.cursor() as cur:
+                print(conn.dsn)
                 create_table_query = sql.SQL("""
                     CREATE TABLE IF NOT EXISTS {table} (
                         id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -65,6 +66,8 @@ def load_to_postgres(df : pd.DataFrame , chunk_size: int = 5000):
                     chunk = rows[i:i + chunk_size]
                     extras.execute_values(cur, insert_stmt.as_string(conn), chunk)
                     logger.info(f"Inserted rows {i+1} to {min(i+chunk_size, total_rows)}")
+
+
                 
         logger.info(f"Successfully loaded {total_rows} rows into {table_name}")
         
