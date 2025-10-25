@@ -20,3 +20,4 @@ database:
     host : localhost
     port : 5433
     table: transactions
+    # add schema also

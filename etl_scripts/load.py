@@ -39,38 +39,51 @@ def load_to_postgres(df : pd.DataFrame , chunk_size: int = 5000):
         with _get_connection(db_conf) as conn:
             with conn.cursor() as cur:
                 print(conn.dsn)
-                create_table_query = sql.SQL("""
-                    CREATE TABLE IF NOT EXISTS {table} (
-                        id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-                        date DATE,
-                        region TEXT,
-                        product TEXT,
-                        sales NUMERIC,
-                        quantity INT
-                    );
-                """
-                ).format(table=sql.Identifier(table_name))
-                cur.execute(create_table_query)
-                logger.info("Ensured {table_name} exists.")
+                try:
+                    create_table_query = sql.SQL("""
+                        CREATE TABLE IF NOT EXISTS {table} (
+                            id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+                            date DATE,
+                            region TEXT,
+                            product TEXT,
+                            sales NUMERIC,
+                            quantity INT
+                        );
+                    """
+                    ).format(table=sql.Identifier(table_name))
+                    cur.execute(create_table_query)
+                    logger.info("Ensured {table_name} exists.")
 
-                #bulk inserts
-                insert_stmt = sql.SQL("""
-                    INSERT INTO {table} ({cols})
-                    VALUES %s
-                """).format(
-                    table=sql.Identifier(table_name),
-                    cols=sql.SQL(", ").join(map(sql.Identifier, columns))
-                )
+                    #bulk inserts
+                    insert_stmt = sql.SQL("""
+                        INSERT INTO {table} ({cols})
+                        VALUES %s
+                    """).format(
+                        table=sql.Identifier(table_name),
+                        # table = sql.Identifier(schema , table_name)
+                        cols=sql.SQL(", ").join(map(sql.Identifier, columns))
+                    )
 
-                for i in range(0, total_rows, chunk_size):
-                    chunk = rows[i:i + chunk_size]
-                    extras.execute_values(cur, insert_stmt.as_string(conn), chunk)
-                    logger.info(f"Inserted rows {i+1} to {min(i+chunk_size, total_rows)}")
+                    for i in range(0, total_rows, chunk_size):
+                        chunk = rows[i:i + chunk_size]
+                        extras.execute_values(cur, insert_stmt.as_string(conn), chunk)
+                        logger.info(f"Inserted rows {i+1} to {min(i+chunk_size, total_rows)}")
+                    
+                    
 
+                    query = f"SELECT COUNT(*) FROM {table_name};"
+                    cur.execute(query)
+                    logger.info("The total no of rows are %s",cur.fetchone()[0])
+                    logger.info("The table is %s",table_name)
 
+                except Exception as e:
+                    conn.rollback()
+                    logger.error(f"❌ Transaction rolled back due to: {e}")
+        
                 
         logger.info(f"Successfully loaded {total_rows} rows into {table_name}")
-        
+
+        conn.commit()
     except Exception as e:
         logger.exception("Failed to load data into Postgres: %s", e)
         raise
