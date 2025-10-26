@@ -20,18 +20,14 @@ def get_latest_file(folder_path : str , extension : str = "*.csv" ):
 
 
 
-def extract_data():
+def extract_data(file_path):
     # it doesnt need , however recievables from imports can be given
     # returns a dataframe
     try:
         raw_folder = configs["paths"]["raw_data"]
         og_schema = configs["schema"]["columns"]
 
-        file_path = get_latest_file(raw_folder)
-        logger.info(f"📁 file path resolved to: {file_path}")
-        
-        if not os.path.exists(file_path):
-            logger.info(f"❌ File not found: {file_path}")
+        # file_path = get_latest_file(raw_folder)
 
         if not file_path:
             return None
