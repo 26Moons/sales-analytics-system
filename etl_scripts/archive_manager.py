@@ -88,7 +88,7 @@ def move_to_archive(file_path: str, archive_root: str, prefix: Optional[str] = N
     return dest_path
 
 
-def handle_file(file_path: str, processed_dir: str, archive_root: str, use_checksum: bool = False) -> str:
+def handle_file(file_path: str, processed_dir: str, archive_root: str, use_checksum: bool = True) -> str:
     """
     Central entry:
     - If file already processed -> move to archive and return 'archived'
