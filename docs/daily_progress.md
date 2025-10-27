@@ -73,6 +73,17 @@ This project simulates a **real-world analytics environment** — including data
 ✅ fix(postgres): handle schema-qualified table names correctly using sql.Identifier
 ✅ Modularization completed with all components running smoothly
 
+---
+
+### 🗓️ **Day 10 , 11 — ADDED archive_manager.py**
+✅ Added(postgres): to stop same file getting processed multiple times
+
+---
+
+### 🗓️ **Day 12 — TEST ( archive_manager.py )**
+✅ Tested archive_manager each functionality by creating unit tests for each of them
+
+
 ## 🧠 Summary of Learning So Far
 
 | Area | Skill / Concept | Type |
