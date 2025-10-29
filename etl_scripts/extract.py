@@ -27,7 +27,7 @@ def get_latest_file(folder_path : str , extension : str = "*.csv" ):
 
     
 
-def extract_data(file_path):
+def extract_data(status):
     # it doesnt need , however recievables from imports can be given
     # returns a dataframe
     try:
@@ -59,7 +59,7 @@ def extract_data(file_path):
 
         else:
             logger.info("File status: %s (no processing performed)", status)
-            return none
+            return None
 
 
     except Exception as e:
