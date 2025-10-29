@@ -83,6 +83,15 @@ This project simulates a **real-world analytics environment** — including data
 ### 🗓️ **Day 12 — TEST ( archive_manager.py )**
 ✅ Tested archive_manager each functionality by creating unit tests for each of them
 
+---
+
+### 🗓️ **Day 13 — FEAT : Integrated archive_manager in ETL**
+✅ Incorporated the archival step after the extract module is run.
+
+---
+
+### 🗓️ **Day 14 — REFACTOR : Making changes to extract.py and main.py**
+✅ Trying to build isolation across each steps in the pipeline.
 
 ## 🧠 Summary of Learning So Far
 
