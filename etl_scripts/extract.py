@@ -16,45 +16,54 @@ configs = load_config()
 def get_latest_file(folder_path : str , extension : str = "*.csv" ):
     # got the folder of new files from configs instance
     # rturns the latest file path
+    logger.info(f"Resolved folder path: {os.path.abspath(folder_path)}")
+
     files = glob.glob(os.path.normpath(os.path.join(folder_path,extension)))
+    logger.info(f'Looking for new files in {folder_path} with extension {extension} and {files} found')
     if not files:
         logger.error(f'No new files are there in {folder_path}')
         return None
     new_file = max(files , key = os.path.getctime)
+    
     logger.info(f'New file found {new_file}')
+
+    valid = is_valid_csv(new_file)
+    if not valid:
+        logger.error(f'File {new_file} is not a valid CSV format')
+        return None
     return new_file
 
 
+def is_valid_csv(file_path: str) -> bool:
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            header = f.readline()
+            expected_cols = ["date", "region", "product", "sales", "quantity"]
+            # Strip spaces and split
+            cols = [col.strip().lower() for col in header.split(",")]
+            if set(expected_cols).issubset(set(cols)):
+                return True
+            else:
+                return False
+    except Exception as e:
+        logger.error(f"File validation failed for {file_path}: {e}")
+        return False
     
 
-def extract_data(status):
+
+
+def extract_data(status: str, file_path: str):
     # it doesnt need , however recievables from imports can be given
     # returns a dataframe
     try:
-        raw_folder = configs["paths"]["raw_data"]
-        og_schema = configs["schema"]["columns"]
-        file_path = get_latest_file(raw_folder)
-
-        if not file_path:
-            return None
         
-        status = handle_file(file_path, PROCESSED, ARCHIVE, use_checksum=False)
         if status == "new":
-            # simulate ETL steps
 
-            df = pd.read_csv(file_path)
 
-            missing_cols = [col for col in og_schema if col not in df.columns]
-            
-            df = df[[c for c in df.columns if c in og_schema]]
+            df = pd.read_csv(file_path,sep= ",")
+            logger.info(f"File {file_path} has {df.columns.tolist()} columns")
 
-            if (len(missing_cols)) != 0:
-                logger.info(f"{len(missing_cols)} columns are missing")
-                for col in missing_cols:
-                    df[col] = None
-
-            archived = move_to_archive(fp, ARCHIVE)
-            logger.info("After processing moved original to archive: %s", archived)
+            logger.info(f"Data extracted , shape is {df.shape}")
             return df
 
         else:
