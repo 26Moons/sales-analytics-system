@@ -3,6 +3,7 @@
 paths:
     raw_data : "sales_data/raw"
     processed_data : "sales_data/processed"
+    archive : "sales_data/archive"
     logs : "logs/etl_logs.log"
 
 schema:
